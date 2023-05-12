@@ -7,9 +7,7 @@ MAINTAINER John Doe <john@example.com>
 # 更新apt软件包索引并安装vim和curl
 RUN apt-get update && apt-get install -y vim curl
 
-# 设置环境变量
-HOSTNAME docker-host
-DEBIAN_FRONTEND noninteractive
+
 
 
 
