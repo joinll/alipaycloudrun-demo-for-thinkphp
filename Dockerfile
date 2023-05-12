@@ -29,12 +29,11 @@ RUN cp /app/conf/nginx.conf /etc/nginx/conf.d/default.conf \
     
     RUN apk add --no-cache yum yum-utils  
 
-RUN echo '[yum.repos.d]' > /etc/yum.repos.d/yum.repo && \
-    echo '[yum.repos.d]' >> /etc/yum.repos.d/yum.repo && \  
-    echo 'name=Alpine main' >> /etc/yum.repos.d/yum.repo && \
-    echo 'baseurl=http://mirrors.aliyun.com/alpine/edge/main' >> /etc/yum.repos.d/yum.repo && \  
-    echo 'gpgcheck=0' >> /etc/yum.repos.d/yum.repo && \
-    echo 'enabled=1' >> /etc/yum.repos.d/yum.repo  
+RUN echo '[epel]' > /etc/yum.repos.d/epel.repo && \
+    echo 'name=EPEL' >> /etc/yum.repos.d/epel.repo && \ 
+    echo 'baseurl=https://mirrors.aliyun.com/epel/7/$basearch' >> /etc/yum.repos.d/epel.repo && \ 
+    echo 'gpgcheck=0' >> /etc/yum.repos.d/epel.repo && \
+    echo 'enabled=1' >> /etc/yum.repos.d/epel.repo 
 
 RUN  yum makecache && yum install -y git vim 
 
