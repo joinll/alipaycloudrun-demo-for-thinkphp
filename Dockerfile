@@ -15,4 +15,4 @@ RUN apt-get update && apt-get install -y vim curl
 WORKDIR /app
 
 # 定义默认命令 
-CMD ["echo", "Hello World"]
+CMD ["sh", "run.sh"]
