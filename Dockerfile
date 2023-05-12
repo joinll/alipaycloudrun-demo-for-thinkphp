@@ -1,19 +1,21 @@
-FROM alpine:3.13
+# 使用 Ubuntu 18.04 作为基础镜像 
+FROM ubuntu:18.04
 
-RUN apk add --no-cache \
-    python3 \ 
-    py3-pip \
-    gcc \
-    g++ \
-    make \
-    openssl-dev \
-    libffi-dev \
-    git \
-    python3-dev
+# 维护者信息
+MAINTAINER John Doe <john@example.com>
 
-RUN pip3 install btpanel 
+# 更新apt软件包索引并安装vim和curl
+RUN apt-get update && apt-get install -y vim curl
 
-RUN bt install  
+# 设置环境变量
+ENV HOSTNAME docker-host
+ENV DEBIAN_FRONTEND noninteractive
 
-EXPOSE 8080
-CMD ["bt", "start"]
+# 复制文件
+COPY ./file.txt /file.txt
+
+# 设置工作目录 
+WORKDIR /app
+
+# 定义默认命令 
+CMD ["echo", "Hello World"]
