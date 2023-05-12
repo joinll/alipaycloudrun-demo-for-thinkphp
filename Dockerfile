@@ -8,11 +8,10 @@ MAINTAINER John Doe <john@example.com>
 RUN apt-get update && apt-get install -y vim curl
 
 # 设置环境变量
-ENV HOSTNAME docker-host
-ENV DEBIAN_FRONTEND noninteractive
+HOSTNAME docker-host
+DEBIAN_FRONTEND noninteractive
 
-# 复制文件
-COPY ./file.txt /file.txt
+
 
 # 设置工作目录 
 WORKDIR /app
