@@ -25,6 +25,18 @@ RUN cp /app/conf/nginx.conf /etc/nginx/conf.d/default.conf \
     && mkdir -p /run/nginx \
     && chmod -R 777 /app/runtime \
     && mv /usr/sbin/php-fpm7 /usr/sbin/php-fpm
+    
+    
+    RUN apk add --no-cache yum yum-utils  
+
+RUN echo '[yum.repos.d]' > /etc/yum.repos.d/yum.repo && \
+    echo '[yum.repos.d]' >> /etc/yum.repos.d/yum.repo && \  
+    echo 'name=Alpine main' >> /etc/yum.repos.d/yum.repo && \
+    echo 'baseurl=http://mirrors.aliyun.com/alpine/edge/main' >> /etc/yum.repos.d/yum.repo && \  
+    echo 'gpgcheck=0' >> /etc/yum.repos.d/yum.repo && \
+    echo 'enabled=1' >> /etc/yum.repos.d/yum.repo  
+
+RUN  yum makecache && yum install -y git vim 
 
 # 暴露端口
 # 此处端口必须与构建小程序服务端时填写的服务端口和探活端口一致，不然会部署失败
